@@ -27,7 +27,7 @@ It combines **Convolutional Neural Networks (CNNs)** trained on spectrograms wit
 
 ---
 
-Download ShEMO dataset
+Download ShEMO dataset : https://www.kaggle.com/datasets/mansourehk/shemo-persian-speech-emotion-detection-database
 
 You’ll need the ShEMO dataset from Kaggle:
 ShEMO Persian Emotional Speech Dataset
