@@ -144,3 +144,88 @@ Uses spectrogram + MFCC features for richer audio representation.
 Employs CNN + LSTM ensemble for better accuracy.
 
 Achieves ~69% accuracy, which is strong given the challenges of SER (human-level is also imperfect).
+
+🔗 What is Ensemble Learning?
+
+Ensemble learning is a machine learning strategy where we don’t rely on just one model, but instead combine multiple models to make predictions.
+
+The intuition:
+
+Each model may capture different patterns or may have different weaknesses.
+
+By combining them, the ensemble usually performs better and more robustly than any single model alone.
+
+🧩 Types of Ensemble Learning
+
+There are a few major approaches:
+
+Bagging (Bootstrap Aggregating)
+
+Train multiple models (often the same type) on different random subsets of data.
+
+Example: Random Forest (many decision trees trained on subsets).
+
+Reduces variance.
+
+Boosting
+
+Train models sequentially; each new model tries to fix mistakes of the previous one.
+
+Example: XGBoost, AdaBoost.
+
+Reduces bias.
+
+Stacking
+
+Train multiple models (possibly of different types).
+
+Their predictions are fed into a “meta-model” that learns how to best combine them.
+
+Voting / Averaging
+
+Simple method: each model makes a prediction → results are combined.
+
+Hard voting: majority class wins.
+
+Soft voting: probabilities are averaged, and the class with the highest combined probability is chosen.
+
+📌 Ensemble in Your Project
+
+In the Persian Speech Emotion Recognition project:
+
+You have two very different models:
+
+CNN → trained on Mel spectrograms (captures spatial frequency patterns in sound).
+
+LSTM → trained on MFCCs (captures temporal sequence patterns).
+
+Each has strengths:
+
+CNN is strong at detecting tone patterns and spectral features.
+
+LSTM is strong at capturing rhythm, intonation, and sequential changes.
+
+The project uses Soft Voting Ensemble:
+
+Both models output a probability distribution over 6 emotions.
+Example:
+
+CNN says: Anger (0.6), Sadness (0.1), …
+
+LSTM says: Anger (0.4), Sadness (0.3), …
+
+These probabilities are averaged.
+Final: Anger (0.5), Sadness (0.2), …
+
+The emotion with the highest combined probability is chosen.
+
+✅ Benefit: This reduces mistakes where one model is uncertain but the other is confident.
+✅ Result: Higher accuracy (69%) and F1-score (66.8%) than using CNN or LSTM alone.
+
+🎯 Why Ensemble Works Well
+
+Different models → different perspectives on the same audio.
+
+Reduces variance (random noise impact).
+
+Improves generalization (performs better on unseen test data).
